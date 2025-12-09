@@ -161,17 +161,6 @@ The system returns:
 
 ---
 
-### 👨‍💻 Author
-
-**Srivatsan MK**  
-B.Sc Computer Technology  
-Coimbatore, India  
-Email: **srivatsanmk2004@gmail.com**
-
-If you like this project, please ⭐ star the repository!
-
----
-
 ### 📄 License
 
 This project is open-source and available under the **MIT License**.
