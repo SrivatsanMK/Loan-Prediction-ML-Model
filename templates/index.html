@@ -3,59 +3,127 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Loan Eligibility Checker</title>
-    <link rel="stylesheet" href="/static/style.css">
+    <title>Loan Approval Predictor</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: "Inter", sans-serif;
+            background: #f4f7fb;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background: #ffffff;
+            padding: 40px;
+            width: 420px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            font-weight: 600;
+            font-size: 26px;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 6px;
+            color: #444;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 18px;
+            border: 2px solid #dbe3ee;
+            border-radius: 10px;
+            outline: none;
+            font-size: 15px;
+        }
+
+        /* REMOVE UP/DOWN ARROWS */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background: #6aafff;
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            font-size: 17px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #5599f5;
+        }
+    </style>
 </head>
+
 <body>
 
-<nav class="navbar">
-    <div class="logo">Loan Predictor</div>
-</nav>
+    <div class="container">
+        <h2>Loan Approval Predictor</h2>
 
-<div class="container">
+        <form action="/predict" method="POST" id="loanForm">
 
-    <div class="card">
-        <h2>Loan Eligibility Checker</h2>
-        <p class="text-muted">Enter applicant details to get prediction</p>
+            <label>Income</label>
+            <input type="number" name="income" id="income" required>
 
-        <form action="/predict" method="POST">
+            <label>Credit Score</label>
+            <input type="number" name="credit_score" id="cs" required>
 
-            <div class="form-group">
-                <label>Annual Income</label>
-                <input type="number" name="income" required>
-            </div>
+            <label>Loan Amount</label>
+            <input type="number" name="loan_amount" id="loan" required>
 
-            <div class="form-group">
-                <label>Credit Score</label>
-                <input type="number" name="credit_score" required>
-            </div>
+            <label>Years Employed</label>
+            <input type="number" name="years_employed" id="yrs" required>
 
-            <div class="form-group">
-                <label>Loan Amount</label>
-                <input type="number" name="loan_amount" required>
-            </div>
+            <label>Points</label>
+            <input type="number" name="points" id="points" required>
 
-            <div class="form-group">
-                <label>Years Employed</label>
-                <input type="number" name="years_employed" required>
-            </div>
-
-            <div class="form-group">
-                <label>Points</label>
-                <input type="number" name="points" required>
-            </div>
-
-            <button type="submit" class="btn">Check Eligibility</button>
+            <button type="submit">Predict</button>
         </form>
-
-        {% if prediction %}
-        <div class="result" style="color: {{ color }};">
-            <strong>{{ prediction }}</strong>
-        </div>
-        {% endif %}
     </div>
 
-</div>
+    <script>
+        // ENTER → Move to next input
+        const fields = ["income", "cs", "loan", "yrs", "points"];
+
+        fields.forEach((id, idx) => {
+            const element = document.getElementById(id);
+
+            element.addEventListener("keydown", function(event) {
+                if (event.key === "Enter") {
+                    event.preventDefault();
+                    if (idx < fields.length - 1) {
+                        document.getElementById(fields[idx + 1]).focus();
+                    } else {
+                        document.getElementById("loanForm").submit();
+                    }
+                }
+            });
+        });
+    </script>
 
 </body>
 </html>

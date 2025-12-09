@@ -29,7 +29,7 @@ def predict():
         result = "Loan Rejected"
         color = "#cc0000"
 
-    return render_template("index.html", prediction=result, color=color)
+    return render_template("result.html", prediction=result, color=color)
 
 if __name__ == "__main__":
     app.run(debug=True)
