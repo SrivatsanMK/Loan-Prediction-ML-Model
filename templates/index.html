@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Eligibility Checker</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="logo">Loan Predictor</div>
+</nav>
+
+<div class="container">
+
+    <div class="card">
+        <h2>Loan Eligibility Checker</h2>
+        <p class="text-muted">Enter applicant details to get prediction</p>
+
+        <form action="/predict" method="POST">
+
+            <div class="form-group">
+                <label>Annual Income</label>
+                <input type="number" name="income" required>
+            </div>
+
+            <div class="form-group">
+                <label>Credit Score</label>
+                <input type="number" name="credit_score" required>
+            </div>
+
+            <div class="form-group">
+                <label>Loan Amount</label>
+                <input type="number" name="loan_amount" required>
+            </div>
+
+            <div class="form-group">
+                <label>Years Employed</label>
+                <input type="number" name="years_employed" required>
+            </div>
+
+            <div class="form-group">
+                <label>Points</label>
+                <input type="number" name="points" required>
+            </div>
+
+            <button type="submit" class="btn">Check Eligibility</button>
+        </form>
+
+        {% if prediction %}
+        <div class="result" style="color: {{ color }};">
+            <strong>{{ prediction }}</strong>
+        </div>
+        {% endif %}
+    </div>
+
+</div>
+
+</body>
+</html>
