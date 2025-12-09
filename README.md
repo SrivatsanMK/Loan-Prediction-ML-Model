@@ -7,6 +7,7 @@ This system includes:
 - A trained ML model (`Loan_Model.pkl`)
 - A corporate-grade web interface (HTML + CSS)
 - Flask backend integration for prediction
+- A separate **Result Page** with dynamic color feedback
 
 ---
 
@@ -15,9 +16,11 @@ This system includes:
 - 🧠 **Machine Learning-based Loan Classification**
 - 🌐 **Flask-powered Web Application**
 - 🎨 **Professional and clean UI (FinTech style)**
-- ⚡ Real-time prediction
+- ⌨️ **ENTER key automatically moves to next field**
+- 🧹 **No number input arrows (spinner removed)**
+-  ⚡ Real-time prediction with instant result page redirect
 - 📊 Uses 5 key applicant features
-- 🔥 Suitable for projects, portfolios, and academic submissions
+- 🔥 Perfect for portfolios, ML projects, and academic submissions
 
 ---
 
@@ -63,14 +66,16 @@ User Input → Flask Backend → ML Model (.pkl) → Prediction Output
 ```
 Loan_Prediction_App/
 │
-├── app.py                 # Flask backend
-├── Loan_Model.pkl         # Trained model
+├── app.py # Flask backend
+├── Loan_Model.pkl # Trained ML model
+├── Model.ipynb # Notebook used for model training
 │
 ├── templates/
-│   └── index.html         # Frontend (HTML)
+│ ├── index.html # Input page with modern UI
+│ └── result.html # Clean result display page
 │
 └── static/
-    └── style.css          # UI styling (CSS)
+└── style.css # Additional CSS
 ```
 
 ---
